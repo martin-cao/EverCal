@@ -1,4 +1,4 @@
-# Evercal
+# EverCal
 
 A minimal calendar app.
 
@@ -8,6 +8,6 @@ A minimal calendar app.
 
 
 > [!WARNING]
-> As it is a assignment project, please **DO NOT pull request!** If you have any suggestion about this project, please create an issue.
+> As this is an assignment project, please **DO NOT pull request!** If you have any suggestion about this project, please create an issue.
 
 For more information, please contact <a href="mailto:martincao119@icloud.com">martincao119@icloud.com</a>.
