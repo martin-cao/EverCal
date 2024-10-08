@@ -40,6 +40,7 @@ class MainWindow(QMainWindow):
         self.eventMonthView_ui = Ui_eventMonthView()
         self.eventMonthView_ui.setupUi(self.eventMonthView)
 
+        # region ui test
         # Add eventMonthView to dateMonthView's vertical layout
         self.dateMonthView_ui.verticalLayout_dateMonthView.addWidget(self.eventMonthView)
 
@@ -48,6 +49,7 @@ class MainWindow(QMainWindow):
 
         # Add monthView to MainWindow's Month's grid layout
         self.ui.gridLayout_monthView.addWidget(self.monthView)
+        # endregion
 
         # Auto layout
         self.setCentralWidget(self.ui.gridWidget)
@@ -58,7 +60,7 @@ class MainWindow(QMainWindow):
     def bind(self):
         pass
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     app = QApplication([])
 

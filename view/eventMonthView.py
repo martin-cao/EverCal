@@ -23,24 +23,30 @@ class Ui_Form(object):
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(400, 300)
-        self.horizontalLayout_2 = QHBoxLayout(Form)
+        self.widget = QWidget(Form)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(12, 13, 193, 24))
+        self.horizontalLayout_2 = QHBoxLayout(self.widget)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label = QLabel(Form)
-        self.label.setObjectName(u"label")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.label_eventMonthView_calendarLabel = QLabel(self.widget)
+        self.label_eventMonthView_calendarLabel.setObjectName(u"label_eventMonthView_calendarLabel")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setMinimumSize(QSize(4, 12))
-        self.label.setMaximumSize(QSize(4, 12))
-        self.label.setStyleSheet(u"background-color: {green}; border-radius: 6px;")
+        sizePolicy.setHeightForWidth(self.label_eventMonthView_calendarLabel.sizePolicy().hasHeightForWidth())
+        self.label_eventMonthView_calendarLabel.setSizePolicy(sizePolicy)
+        self.label_eventMonthView_calendarLabel.setMinimumSize(QSize(4, 12))
+        self.label_eventMonthView_calendarLabel.setMaximumSize(QSize(4, 12))
+        self.label_eventMonthView_calendarLabel.setAutoFillBackground(True)
+        self.label_eventMonthView_calendarLabel.setStyleSheet(u"background-color: {green}; corner-radius: {6px};")
+        self.label_eventMonthView_calendarLabel.setScaledContents(False)
 
-        self.horizontalLayout_2.addWidget(self.label)
+        self.horizontalLayout_2.addWidget(self.label_eventMonthView_calendarLabel)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label_eventMonthView_eventTitle = QLabel(Form)
+        self.label_eventMonthView_eventTitle = QLabel(self.widget)
         self.label_eventMonthView_eventTitle.setObjectName(u"label_eventMonthView_eventTitle")
         sizePolicy.setHeightForWidth(self.label_eventMonthView_eventTitle.sizePolicy().hasHeightForWidth())
         self.label_eventMonthView_eventTitle.setSizePolicy(sizePolicy)
@@ -53,7 +59,7 @@ class Ui_Form(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.label_eventMonthView_time = QLabel(Form)
+        self.label_eventMonthView_time = QLabel(self.widget)
         self.label_eventMonthView_time.setObjectName(u"label_eventMonthView_time")
         sizePolicy.setHeightForWidth(self.label_eventMonthView_time.sizePolicy().hasHeightForWidth())
         self.label_eventMonthView_time.setSizePolicy(sizePolicy)
@@ -73,7 +79,6 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText("")
         self.label_eventMonthView_eventTitle.setText(QCoreApplication.translate("Form", u"EventTitle", None))
         self.label_eventMonthView_time.setText(QCoreApplication.translate("Form", u"12:00 AM", None))
     # retranslateUi

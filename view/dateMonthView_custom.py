@@ -15,7 +15,7 @@ class CustomDateMonthView(QWidget):
         self.layout = QVBoxLayout(self)
         self.setLayout(self.layout)
 
-    def addEvent(self, event_text):
+    def add_event(self, event_text):
         loader = QUiLoader()
         file = QFile("./eventMonthView.ui")
         file.open(QFile.ReadOnly)
