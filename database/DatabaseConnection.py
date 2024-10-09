@@ -11,3 +11,4 @@ class DatabaseConnection:
 
     def close(self):
         self.session.close()
+
