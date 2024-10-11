@@ -13,6 +13,7 @@ from view.EverCal import Ui_MainWindow
 from view.monthView import Ui_monthView
 from view.dateMonthView import Ui_Form as Ui_dateMonthView
 from view.eventMonthView import Ui_Form as Ui_eventMonthView
+from view_model.init import init_ui
 
 
 class MainWindow(QMainWindow):
@@ -40,12 +41,12 @@ class MainWindow(QMainWindow):
         self.eventMonthView_ui = Ui_eventMonthView()
         self.eventMonthView_ui.setupUi(self.eventMonthView)
 
-        # region ui test
-        # Add eventMonthView to dateMonthView's vertical layout
-        self.dateMonthView_ui.verticalLayout_dateMonthView.addWidget(self.eventMonthView)
-
-        # Add dateMonthView to monthView's grid layout
-        self.monthView_ui.gridLayout_monthView_calendarGrid.addWidget(self.dateMonthView)
+        # # region ui test
+        # # Add eventMonthView to dateMonthView's vertical layout
+        # self.dateMonthView_ui.verticalLayout_dateMonthView.addWidget(self.eventMonthView)
+        #
+        # # Add dateMonthView to monthView's grid layout
+        # self.monthView_ui.gridLayout_monthView_calendarGrid.addWidget(self.dateMonthView)
 
         # Add monthView to MainWindow's Month's grid layout
         self.ui.gridLayout_monthView.addWidget(self.monthView)
@@ -53,6 +54,9 @@ class MainWindow(QMainWindow):
 
         # Auto layout
         self.setCentralWidget(self.ui.gridWidget)
+
+        # Initialize the month view
+        init_ui(self.monthView, 2024, 10, 1)
 
         # Bind widgets and slots
         self.bind()

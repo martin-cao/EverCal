@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLayout,
+from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLayout,
     QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
@@ -23,13 +23,11 @@ class Ui_Form(object):
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(582, 556)
-        self.verticalLayout = QVBoxLayout(Form)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.gridLayout = QGridLayout(Form)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.horizontalSpacer = QSpacerItem(509, 17, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout.addItem(self.horizontalSpacer)
+        self.gridLayout.addItem(self.horizontalSpacer, 0, 0, 1, 1)
 
         self.label_dateMonthView_date = QLabel(Form)
         self.label_dateMonthView_date.setObjectName(u"label_dateMonthView_date")
@@ -38,19 +36,17 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_dateMonthView_date.sizePolicy().hasHeightForWidth())
         self.label_dateMonthView_date.setSizePolicy(sizePolicy)
-        self.label_dateMonthView_date.setMinimumSize(QSize(31, 16))
-        self.label_dateMonthView_date.setMaximumSize(QSize(31, 16))
+        self.label_dateMonthView_date.setMinimumSize(QSize(36, 16))
+        self.label_dateMonthView_date.setMaximumSize(QSize(36, 16))
+        self.label_dateMonthView_date.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTop|Qt.AlignmentFlag.AlignTrailing)
 
-        self.horizontalLayout.addWidget(self.label_dateMonthView_date)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.gridLayout.addWidget(self.label_dateMonthView_date, 0, 1, 1, 1)
 
         self.verticalLayout_dateMonthView = QVBoxLayout()
         self.verticalLayout_dateMonthView.setObjectName(u"verticalLayout_dateMonthView")
         self.verticalLayout_dateMonthView.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
 
-        self.verticalLayout.addLayout(self.verticalLayout_dateMonthView)
+        self.gridLayout.addLayout(self.verticalLayout_dateMonthView, 1, 0, 1, 2)
 
 
         self.retranslateUi(Form)
