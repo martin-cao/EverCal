@@ -43,6 +43,7 @@ class Ui_Form(object):
         self.gridLayout.addWidget(self.label_dateMonthView_date, 0, 1, 1, 1)
 
         self.verticalLayout_dateMonthView = QVBoxLayout()
+        self.verticalLayout_dateMonthView.setSpacing(1)
         self.verticalLayout_dateMonthView.setObjectName(u"verticalLayout_dateMonthView")
         self.verticalLayout_dateMonthView.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
 

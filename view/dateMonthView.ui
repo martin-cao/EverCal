@@ -56,7 +56,10 @@
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_dateMonthView" stretch="">
+    <layout class="QVBoxLayout" name="verticalLayout_dateMonthView">
+     <property name="spacing">
+      <number>1</number>
+     </property>
      <property name="sizeConstraint">
       <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
      </property>

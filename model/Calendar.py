@@ -1,6 +1,6 @@
 from typing import List, Optional
 from PySide6.QtCore import QDate
-from PySide6.QtGui import QColor
+from PySide6.QtGui import QColor, Qt
 import uuid, time, hashlib
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
@@ -16,7 +16,7 @@ class Calendar(Base):
     created_at = Column(String)
     events = relationship("Event", back_populates="calendar")
 
-    def __init__(self, name: str, colour: QColor = QColor.rgb(), description: str = "",
+    def __init__(self, name: str, colour: QColor = QColor(Qt.GlobalColor.red), description: str = "",
                  created_at: Optional[str] = None):
         self.events: List[Event] = []
         self.name: str = name
