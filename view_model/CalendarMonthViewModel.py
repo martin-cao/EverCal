@@ -97,4 +97,5 @@ class CalendarMonthViewModel:
                 date_month_view_model = DateMonthViewModel(date_view, self.db_connection)
                 date_month_view_model.setup_dateView(current_date)
 
+                print(f"Adding date_view at row {row}, col {col}")
                 self.grid_layout.addWidget(date_view, row, col)

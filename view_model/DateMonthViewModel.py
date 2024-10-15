@@ -1,4 +1,5 @@
-from PyQt6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QSpacerItem
+from PyQt6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QSpacerItem, \
+    QItemEditorCreatorBase
 from PySide6.QtCore import QDate, Qt
 from model.Event import Event
 from view.dateMonthView import Ui_Form as Ui_dateMonthView
@@ -12,7 +13,28 @@ from model.Calendar import *
 class DateMonthViewModel:
     def __init__(self, view: QWidget, db_connection: DatabaseConnection):
         self.date_view = view
-        self.vertical_layout = view.findChild(QVBoxLayout, "verticalLayout_dateMonthView")
+
+        for child in self.date_view.children():
+            print(f"{child.objectName()}, {type(child).__name__}")
+
+        self.grid_layout = self.date_view.findChild(QGridLayout, "gridLayout")
+
+        if self.grid_layout:
+            print("gridLayout found")
+            for i in range(self.grid_layout.count()):
+                item = self.grid_layout.itemAt(i)
+                widget = item.widget()  # 尝试获取布局中的小部件
+                layout = item.layout()  # 尝试获取布局中的布局
+                if widget:
+                    print(f"Found widget: {widget.objectName()}")
+                if layout:
+                    print(f"Found layout: {layout.objectName()}")
+                    if isinstance(layout, QVBoxLayout) and layout.objectName() == "verticalLayout_dateMonthView":
+                        self.vertical_layout = layout
+                        break
+
+
+
         if self.vertical_layout is None:
             raise ValueError("Vertical layout 'verticalLayout_dateMonthView' not found in the view")
         self.db = db_connection.session.query(Calendar).first()
