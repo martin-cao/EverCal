@@ -1,6 +1,7 @@
 from PySide6.QtCore import QDate, Qt
 from PySide6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel
-from view.dateMonthView import Ui_Form as Ui_dateMonthView
+# from view.dateMonthView import Ui_Form as Ui_dateMonthView
+from view.dateMonthView_custom import CustomDateMonthView as Ui_dateMonthView
 from view_model.DateMonthViewModel import DateMonthViewModel
 from database.DatabaseConnection import *
 
@@ -57,6 +58,7 @@ class CalendarMonthViewModel:
                 date_view.setFrameShape(QFrame.Box)
                 date_view.setLineWidth(1)
                 date_view_ui = Ui_dateMonthView()
+                # date_view_ui = Ui_dateMonthView_custom()
                 date_view_ui.setupUi(date_view)
 
                 date_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -67,6 +69,8 @@ class CalendarMonthViewModel:
                 date_view.setMidLineWidth(1)
 
                 date_view_ui.label_dateMonthView_date.setAlignment(Qt.AlignRight | Qt.AlignTop)
+
+
 
                 # Calculate the current date
                 current_date = QDate(year, month, day)
@@ -94,7 +98,7 @@ class CalendarMonthViewModel:
                     day += 1
 
                 # Instantiate DateMonthViewModel and set up the date view
-                date_month_view_model = DateMonthViewModel(date_view, self.db_connection)
+                date_month_view_model = DateMonthViewModel(date_view, date_view_ui.verticalLayout_dateMonthView, self.db_connection)
                 date_month_view_model.setup_dateView(current_date)
 
                 print(f"Adding date_view at row {row}, col {col}")

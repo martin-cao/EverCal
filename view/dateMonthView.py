@@ -25,6 +25,13 @@ class Ui_Form(object):
         Form.resize(582, 556)
         self.gridLayout = QGridLayout(Form)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.verticalLayout_dateMonthView = QVBoxLayout()
+        self.verticalLayout_dateMonthView.setSpacing(1)
+        self.verticalLayout_dateMonthView.setObjectName(u"verticalLayout_dateMonthView")
+        self.verticalLayout_dateMonthView.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+
+        self.gridLayout.addLayout(self.verticalLayout_dateMonthView, 1, 0, 1, 2)
+
         self.horizontalSpacer = QSpacerItem(509, 17, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout.addItem(self.horizontalSpacer, 0, 0, 1, 1)
@@ -41,13 +48,6 @@ class Ui_Form(object):
         self.label_dateMonthView_date.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTop|Qt.AlignmentFlag.AlignTrailing)
 
         self.gridLayout.addWidget(self.label_dateMonthView_date, 0, 1, 1, 1)
-
-        self.verticalLayout_dateMonthView = QVBoxLayout()
-        self.verticalLayout_dateMonthView.setSpacing(1)
-        self.verticalLayout_dateMonthView.setObjectName(u"verticalLayout_dateMonthView")
-        self.verticalLayout_dateMonthView.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
-
-        self.gridLayout.addLayout(self.verticalLayout_dateMonthView, 1, 0, 1, 2)
 
 
         self.retranslateUi(Form)
