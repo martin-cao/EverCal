@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QSpacerItem, \
+from PySide6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QSpacerItem, \
     QItemEditorCreatorBase
 from PySide6.QtCore import QDate, Qt
 from model.Event import Event
@@ -44,9 +44,10 @@ class DateMonthViewModel:
             event_view_ui = Ui_eventMonthView()
             event_view_ui.setupUi(event_view)
 
-            # Assuming the QLabel in eventMonthView.ui has the objectName "label_eventMonthView_eventTitle"
             event_label = event_view.findChild(QLabel, "label_eventMonthView_eventTitle")
             event_label.setText(event.name)
+            time_label = event_view.findChild(QLabel, "label_eventMonthView_time")
+            time_label.setText(event.start_time.toString("hh:mm AP"))
 
             self.vertical_layout.addWidget(event_view)
 
