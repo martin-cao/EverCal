@@ -44,6 +44,8 @@ class DateMonthViewModel:
             event_view_ui = Ui_eventMonthView()
             event_view_ui.setupUi(event_view)
 
+            colour_label = event_view.findChild(QLabel, "label_eventMonthView_calendarLabel")
+            colour_label.setStyleSheet(f"background-color: {event.calendar.colour.name()}; border-radius: 2px;")
             event_label = event_view.findChild(QLabel, "label_eventMonthView_eventTitle")
             event_label.setText(event.name)
             time_label = event_view.findChild(QLabel, "label_eventMonthView_time")
@@ -52,8 +54,8 @@ class DateMonthViewModel:
             self.vertical_layout.addWidget(event_view)
 
         # Add a vertical spacer at the bottom
-        spacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-        # self.vertical_layout.addItem(spacer)
+        spacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.vertical_layout.addItem(spacer)
 
 
 
