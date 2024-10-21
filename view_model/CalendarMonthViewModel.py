@@ -58,7 +58,6 @@ class CalendarMonthViewModel:
                 date_view.setFrameShape(QFrame.Box)
                 date_view.setLineWidth(1)
                 date_view_ui = Ui_dateMonthView()
-                # date_view_ui = Ui_dateMonthView_custom()
                 date_view_ui.setupUi(date_view)
 
                 date_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

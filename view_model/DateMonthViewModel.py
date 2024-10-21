@@ -42,7 +42,7 @@ class DateMonthViewModel:
         available_height = self.date_view.height()
 
         # Calculate the height of a single event widget
-        temp_event_view = QWidget()
+        temp_event_view = QWidget(parent=None)
         temp_event_view_ui = Ui_eventMonthView()
         temp_event_view_ui.setupUi(temp_event_view)
         event_height = temp_event_view.sizeHint().height()
