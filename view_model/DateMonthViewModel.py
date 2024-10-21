@@ -15,16 +15,19 @@ class DateMonthViewModel:
     def __init__(self, view: QWidget, vertical_layout: QVBoxLayout, db_connection: DatabaseConnection):
         self.date_view = view
 
-        for child in self.date_view.children():
-            print(f"{child.objectName()}, {type(child).__name__}")
+        # debug
+        # for child in self.date_view.children():
+        #     print(f"{child.objectName()}, {type(child).__name__}")
 
         self.vertical_layout = vertical_layout
 
+        # debug
         if self.vertical_layout is None:
             raise ValueError("Vertical layout 'verticalLayout_dateMonthView' not found in the view")
 
         self.db = db_connection.session.query(Calendar).first()
 
+        # debug
         if self.db is None:
             raise ValueError("No Calendar object found in the database")
 
@@ -43,6 +46,11 @@ class DateMonthViewModel:
             event_view = QWidget()
             event_view_ui = Ui_eventMonthView()
             event_view_ui.setupUi(event_view)
+
+            # Currently EventMonthViewModel is yet not implemented
+
+            # event_month_view_model = EventMonthViewModel(event_view)
+            # event_month_view_model.setup_eventView(event)
 
             colour_label = event_view.findChild(QLabel, "label_eventMonthView_calendarLabel")
             colour_label.setStyleSheet(f"background-color: {event.calendar.colour.name()}; border-radius: 2px;")

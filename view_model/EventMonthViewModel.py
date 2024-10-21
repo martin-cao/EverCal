@@ -10,11 +10,12 @@ class EventMonthViewModel:
         self.label_event_title = view.findChild(QLabel, "label_eventMonthView_eventTitle")
         self.label_event_time = view.findChild(QLabel, "label_eventMonthView_time")
         self.label_calendar_label = view.findChild(QLabel, "label_eventMonthView_calendarLabel")
+        self.label_colour_label = view.findChild(QLabel, "label_eventMonthView_calendarLabel")
 
     def setup_eventView(self, event: Event):
         self.label_event_title.setText(event.name)
         self.label_event_time.setText(event.time.toString("hh:mm AP"))
-        calendar_colour = event.calendar.colour.name()
-        self.label_calendar_label.setStyleSheet(f"background-color: {calendar_colour}; border-radius: 2px;")
+        self.label_calendar_label.setStyleSheet(f"background-color: {event.calendar.colour.name()}; border-radius: 2px;")
+
 
 

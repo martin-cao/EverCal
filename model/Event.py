@@ -73,7 +73,7 @@ class Event(Base):
             return self.repeat_rule.occurs_on(date)
         return self.start_time.date() <= date <= self.end_time.date()
 
-    def convert_solar_to_lunar(selfself, date: QDate) -> QDate:
+    def convert_solar_to_lunar(self, date: QDate) -> QDate:
         solar = Solar(date.year(), date.month(), date.day())
         lunar = Converter.Solar2Lunar(solar)
         return QDate(lunar.year, lunar.month, lunar.day)
