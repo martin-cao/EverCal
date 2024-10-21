@@ -7,7 +7,7 @@ from PySide6.QtCore import QFile
 
 from view.dateMonthView import Ui_Form
 
-class CustomDateMonthView(QWidget):
+class CustomDateMonthView(QWidget, Ui_Form):
     def __init__(self, parent=None):
         super(CustomDateMonthView, self).__init__(parent)
         self.ui = Ui_Form()

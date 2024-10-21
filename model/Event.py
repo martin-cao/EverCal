@@ -2,8 +2,9 @@ from typing import List, Optional
 import uuid
 from enum import Enum
 from lunarcalendar import Converter, Lunar, Solar
-from PySide6.QtCore import QDate, QDateTime
+from PySide6.QtCore import QDate, QDateTime, Qt
 from sqlalchemy import Column, String, Integer, Boolean, ForeignKey
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 from model.Base import Base
 from model.RepeatRule import RepeatRule
@@ -25,8 +26,8 @@ class Event(Base):
     address = Column(String)
     calendar_id = Column(String, ForeignKey('calendars.id'))
     is_all_day = Column(Boolean)
-    start_time = Column(String)
-    end_time = Column(String)
+    _start_time = Column("start_time", String)
+    _end_time = Column("end_time", String)
     repeat_rule = Column(String)
     invitees = Column(String)
     notes = Column(String)
@@ -49,6 +50,23 @@ class Event(Base):
         self.notes: str = notes
         self.url: str = url
         self.holiday_type: int = holiday_type
+
+    # String stores in database, and QDateTime runs in program
+    @hybrid_property
+    def start_time(self):
+        return QDateTime.fromString(self._start_time, Qt.ISODate)
+
+    @start_time.setter
+    def start_time(self, value: QDateTime):
+        self._start_time = value.toString(Qt.ISODate)
+
+    @hybrid_property
+    def end_time(self):
+        return QDateTime.fromString(self._end_time, Qt.ISODate)
+
+    @end_time.setter
+    def end_time(self, value: QDateTime):
+        self._end_time = value.toString(Qt.ISODate)
 
     def occurs_on(self, date: QDate) -> bool:
         if self.repeat_rule:

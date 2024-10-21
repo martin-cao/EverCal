@@ -1,7 +1,8 @@
 from PySide6.QtWidgets import QWidget
-from view_model.CalendarViewModel import CalendarViewModel
+from view_model.CalendarMonthViewModel import CalendarMonthViewModel
+from database.DatabaseConnection import DatabaseConnection
 
-def init_ui(month_view: QWidget, year: int, month: int, start_day_of_week: int):
+def init_ui(view: QWidget, year: int, month: int, start_day_of_week: int, db_connection: DatabaseConnection):
     """Initialize the interface with the given year and month."""
-    calendar_view_model = CalendarViewModel(month_view)
-    calendar_view_model.setup(year, month, start_day_of_week)
+    calendar_monthView_view_model = CalendarMonthViewModel(view, db_connection)
+    calendar_monthView_view_model.setup_monthView(year, month, start_day_of_week)

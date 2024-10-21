@@ -14,10 +14,11 @@ from view.monthView import Ui_monthView
 from view.dateMonthView import Ui_Form as Ui_dateMonthView
 from view.eventMonthView import Ui_Form as Ui_eventMonthView
 from view_model.init import init_ui
+from database.DatabaseConnection import *
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, db_connection: DatabaseConnection):
         super(MainWindow, self).__init__()
 
         # Setup MainWindow
@@ -31,15 +32,15 @@ class MainWindow(QMainWindow):
         self.monthView_ui = Ui_monthView()
         self.monthView_ui.setupUi(self.monthView)
 
-        # Setup dateMonthView
-        self.dateMonthView = QWidget()
-        self.dateMonthView_ui = Ui_dateMonthView()
-        self.dateMonthView_ui.setupUi(self.dateMonthView)
-
-        # Setup eventMonthView
-        self.eventMonthView = QWidget()
-        self.eventMonthView_ui = Ui_eventMonthView()
-        self.eventMonthView_ui.setupUi(self.eventMonthView)
+        # # Setup dateMonthView
+        # self.dateMonthView = QWidget()
+        # self.dateMonthView_ui = Ui_dateMonthView()
+        # self.dateMonthView_ui.setupUi(self.dateMonthView)
+        #
+        # # Setup eventMonthView
+        # self.eventMonthView = QWidget()
+        # self.eventMonthView_ui = Ui_eventMonthView()
+        # self.eventMonthView_ui.setupUi(self.eventMonthView)
 
         # # region ui test
         # # Add eventMonthView to dateMonthView's vertical layout
@@ -56,7 +57,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.ui.gridWidget)
 
         # Initialize the month view
-        init_ui(self.monthView, 2024, 10, 1)
+        init_ui(self.monthView, 2024, 10, 1, db_connection)
 
         # Bind widgets and slots
         self.bind()
@@ -73,7 +74,9 @@ if __name__ == "__main__":
     # elif sys.platform == "win32": # Windows
     #     app.setStyle("windowsvista")
 
-    window = MainWindow()
+    db_connection = DatabaseConnection()
+
+    window = MainWindow(db_connection)
     window.show()
     app.exec()
 
