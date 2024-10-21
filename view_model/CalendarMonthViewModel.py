@@ -1,3 +1,4 @@
+from PyQt6.QtWidgets import QPushButton
 from PySide6.QtCore import QDate, Qt
 from PySide6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel
 # from view.dateMonthView import Ui_Form as Ui_dateMonthView
@@ -10,6 +11,10 @@ class CalendarMonthViewModel:
         self.month_view = view
         self.grid_layout = view.findChild(QGridLayout, "gridLayout_monthView_calendarGrid")
         self.db_connection = db_connection
+
+        self.button_previous_month = view.findChild(QPushButton, "pushButton_monthView_header_previous")
+        self.button_next_month = view.findChild(QPushButton, "pushButton_monthView_header_next")
+        self.button_today = view.findChild(QPushButton, "pushButton_monthView_header_today")
 
     def setup_monthView(self, year: int, month: int, start_day_of_week: int):
         # Clear existing items in the grid layout
@@ -63,6 +68,8 @@ class CalendarMonthViewModel:
                 date_view = QFrame()
                 date_view.setFrameShape(QFrame.Box)
                 date_view.setLineWidth(1)
+                date_view.setMinimumWidth(140)
+                date_view.setMinimumHeight(64)
                 date_view_ui = Ui_dateMonthView()
                 date_view_ui.setupUi(date_view)
 
@@ -106,5 +113,7 @@ class CalendarMonthViewModel:
                 date_month_view_model = DateMonthViewModel(date_view, date_view_ui.verticalLayout_dateMonthView, self.db_connection)
                 date_month_view_model.setup_dateView(current_date)
 
-                print(f"Adding date_view at row {row}, col {col}")
+                # debug
+                # print(f"Adding date_view at row {row}, col {col}")
+
                 self.grid_layout.addWidget(date_view, row, col)
