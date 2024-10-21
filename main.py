@@ -32,15 +32,15 @@ class MainWindow(QMainWindow):
         self.monthView_ui = Ui_monthView()
         self.monthView_ui.setupUi(self.monthView)
 
-        # Setup dateMonthView
-        self.dateMonthView = QWidget()
-        self.dateMonthView_ui = Ui_dateMonthView()
-        self.dateMonthView_ui.setupUi(self.dateMonthView)
-
-        # Setup eventMonthView
-        self.eventMonthView = QWidget()
-        self.eventMonthView_ui = Ui_eventMonthView()
-        self.eventMonthView_ui.setupUi(self.eventMonthView)
+        # # Setup dateMonthView
+        # self.dateMonthView = QWidget()
+        # self.dateMonthView_ui = Ui_dateMonthView()
+        # self.dateMonthView_ui.setupUi(self.dateMonthView)
+        #
+        # # Setup eventMonthView
+        # self.eventMonthView = QWidget()
+        # self.eventMonthView_ui = Ui_eventMonthView()
+        # self.eventMonthView_ui.setupUi(self.eventMonthView)
 
         # # region ui test
         # # Add eventMonthView to dateMonthView's vertical layout

@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QSizePolicy,
 
 class Ui_Form(object):
     def setupUi(self, Form):
+        print(f"Form type: {type(Form)}")
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(652, 551)
