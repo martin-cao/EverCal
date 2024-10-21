@@ -24,9 +24,11 @@ class Ui_Form(object):
             Form.setObjectName(u"Form")
         Form.resize(582, 556)
         self.gridLayout = QGridLayout(Form)
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.verticalLayout_dateMonthView = QVBoxLayout()
-        self.verticalLayout_dateMonthView.setSpacing(1)
+        self.verticalLayout_dateMonthView.setSpacing(0)
         self.verticalLayout_dateMonthView.setObjectName(u"verticalLayout_dateMonthView")
         self.verticalLayout_dateMonthView.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
 

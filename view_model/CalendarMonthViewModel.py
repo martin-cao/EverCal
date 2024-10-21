@@ -50,6 +50,12 @@ class CalendarMonthViewModel:
         # Get the number of days in the month
         days_in_month = first_day.daysInMonth()
 
+        # Set column and row stretch factors to ensure equal size
+        for i in range(7):
+            self.grid_layout.setColumnStretch(i, 1)
+        for i in range(6):
+            self.grid_layout.setRowStretch(i, 1)
+
         # Create date views for each day in the 7x6 grid
         day = 1
         for row in range(6):

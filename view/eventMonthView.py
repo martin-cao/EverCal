@@ -24,7 +24,9 @@ class Ui_Form(object):
             Form.setObjectName(u"Form")
         Form.resize(652, 551)
         self.gridLayout = QGridLayout(Form)
+        self.gridLayout.setSpacing(4)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setSpacing(4)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -67,8 +69,8 @@ class Ui_Form(object):
         self.label_eventMonthView_time.setObjectName(u"label_eventMonthView_time")
         sizePolicy.setHeightForWidth(self.label_eventMonthView_time.sizePolicy().hasHeightForWidth())
         self.label_eventMonthView_time.setSizePolicy(sizePolicy)
-        self.label_eventMonthView_time.setMinimumSize(QSize(28, 16))
-        self.label_eventMonthView_time.setMaximumSize(QSize(56, 16))
+        self.label_eventMonthView_time.setMinimumSize(QSize(58, 16))
+        self.label_eventMonthView_time.setMaximumSize(QSize(58, 16))
 
         self.horizontalLayout.addWidget(self.label_eventMonthView_time)
 
