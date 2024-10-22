@@ -28,7 +28,7 @@ class Event(Base):
     is_all_day = Column(Boolean)
     _start_time = Column("start_time", String)
     _end_time = Column("end_time", String)
-    repeat_rule = Column(String)
+    _repeat_rule = Column("repeat_rule", String)
     invitees = Column(String)
     notes = Column(String)
     url = Column(String)
@@ -51,7 +51,6 @@ class Event(Base):
         self.url: str = url
         self.holiday_type: int = holiday_type
 
-    # String stores in database, and QDateTime runs in program
     @hybrid_property
     def start_time(self):
         return QDateTime.fromString(self._start_time, Qt.ISODate)
@@ -68,9 +67,17 @@ class Event(Base):
     def end_time(self, value: QDateTime):
         self._end_time = value.toString(Qt.ISODate)
 
+    @hybrid_property
+    def repeat_rule(self):
+        return RepeatRule.from_json(self._repeat_rule) if self._repeat_rule else None
+
+    @repeat_rule.setter
+    def repeat_rule(self, value: Optional[RepeatRule]):
+        self._repeat_rule = value.to_json() if value else None
+
     def occurs_on(self, date: QDate) -> bool:
         if self.repeat_rule:
-            return self.repeat_rule.occurs_on(date)
+            return self.repeat_rule.occurs_on(date, self.start_time.date())
         return self.start_time.date() <= date <= self.end_time.date()
 
     def convert_solar_to_lunar(self, date: QDate) -> QDate:
@@ -105,4 +112,3 @@ class Event(Base):
             )
             events.append(new_event)
         return events
-

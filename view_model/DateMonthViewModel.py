@@ -22,14 +22,14 @@ class DateMonthViewModel:
         self.vertical_layout = vertical_layout
 
         # debug
-        if self.vertical_layout is None:
-            raise ValueError("Vertical layout 'verticalLayout_dateMonthView' not found in the view")
+        # if self.vertical_layout is None:
+        #     raise ValueError("Vertical layout 'verticalLayout_dateMonthView' not found in the view")
 
         self.db = db_connection.session.query(Calendar).first()
 
         # debug
-        if self.db is None:
-            raise ValueError("No Calendar object found in the database")
+        # if self.db is None:
+        #     raise ValueError("No Calendar object found in the database")
 
     def setup_dateView(self, date: QDate):
         # Get all events on the date
