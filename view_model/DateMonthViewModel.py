@@ -1,7 +1,8 @@
 from PySide6.QtWidgets import QWidget, QGridLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QSpacerItem, \
     QItemEditorCreatorBase
-from PySide6.QtCore import QDate, Qt
-from model.Event import Event
+from PySide6.QtCore import QDate, Qt, QDateTime, QTime
+from model.Event import Event, HolidayType
+from model.Holiday import get_china_holidays
 # from view.dateMonthView import Ui_Form as Ui_dateMonthView
 from view.dateMonthView_custom import CustomDateMonthView as Ui_dateMonthView
 from view.eventMonthView import Ui_Form as Ui_eventMonthView
@@ -31,9 +32,26 @@ class DateMonthViewModel:
         # if self.db is None:
         #     raise ValueError("No Calendar object found in the database")
 
+        self.holidays = get_china_holidays(QDate.currentDate().year())
+
     def setup_dateView(self, date: QDate):
         # Get all events on the date
         events: [Event] = self.db.get_events_for_date(date)
+
+        if date in self.holidays:
+            holiday_event = Event(
+                name=self.holidays[date],
+                address="",
+                calendar_id="holiday_calendar",
+                is_all_day=True,
+                start_time=QDateTime(date, QTime(0, 0)),
+                end_time=QDateTime(date, QTime(23, 59)),
+                invitees=[],
+                notes="",
+                url="",
+                holiday_type=HolidayType.GREGORIAN.value
+            )
+            events.append(holiday_event)
 
         # Clear existing items in the vertical layout
         while self.vertical_layout.count():
@@ -47,17 +65,15 @@ class DateMonthViewModel:
             event_view_ui = Ui_eventMonthView()
             event_view_ui.setupUi(event_view)
 
-            # Currently EventMonthViewModel is yet not implemented
-
-            # event_month_view_model = EventMonthViewModel(event_view)
-            # event_month_view_model.setup_eventView(event)
-
             colour_label = event_view.findChild(QLabel, "label_eventMonthView_calendarLabel")
-            colour_label.setStyleSheet(f"background-color: {event.calendar.colour.name()}; border-radius: 2px;")
+            if event.calendar:
+                colour_label.setStyleSheet(f"background-color: {event.calendar.colour.name()}; border-radius: 2px;")
+            else:
+                colour_label.setStyleSheet("background-color: gray; border-radius: 2px;")
             event_label = event_view.findChild(QLabel, "label_eventMonthView_eventTitle")
             event_label.setText(event.name)
             time_label = event_view.findChild(QLabel, "label_eventMonthView_time")
-            time_label.setText(event.start_time.toString("hh:mm AP"))
+            time_label.setText("All Day" if event.is_all_day else event.start_time.toString("hh:mm AP"))
 
             self.vertical_layout.addWidget(event_view)
 
