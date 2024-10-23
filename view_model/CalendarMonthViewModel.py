@@ -50,6 +50,7 @@ class CalendarMonthViewModel:
 
         # Get the number of days in the previous month
         previous_month = first_day.addMonths(-1)
+        next_month = first_day.addMonths(1)
         days_in_previous_month = previous_month.daysInMonth()
 
         # Get the number of days in the month
@@ -93,7 +94,6 @@ class CalendarMonthViewModel:
                     date_view_ui.label_dateMonthView_date.setStyleSheet("color: gray;")
                 elif day > days_in_month:  # Days after the last day of the month
                     next_month_date = day - days_in_month
-                    next_month = first_day.addMonths(1)
                     if next_month_date == 1:
                         date_view_ui.label_dateMonthView_date.setText(next_month.toString("MMM d"))
                     else:
@@ -110,7 +110,7 @@ class CalendarMonthViewModel:
                 # Instantiate DateMonthViewModel and set up the date view
                 if current_date.year() > 0:
                     date_month_view_model = DateMonthViewModel(date_view, date_view_ui.verticalLayout_dateMonthView, self.db_connection)
-                    date_month_view_model.setup_dateView(current_date)
+                    date_month_view_model.setup_dateView(current_date, month)
 
                 # debug
                 # print(f"Adding date_view at row {row}, col {col}")

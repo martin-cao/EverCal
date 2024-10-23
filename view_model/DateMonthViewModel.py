@@ -34,7 +34,7 @@ class DateMonthViewModel:
 
         self.holidays = get_china_holidays(QDate.currentDate().year())
 
-    def setup_dateView(self, date: QDate):
+    def setup_dateView(self, date: QDate, current_month):
         # Get all events on the date
         events: [Event] = self.db.get_events_for_date(date)
         self.holidays = get_china_holidays(date.year())
@@ -59,6 +59,11 @@ class DateMonthViewModel:
                 holiday_type=HolidayType.GREGORIAN.value
             )
             events.append(holiday_event)
+
+        # Check if the current day is part of the previous month
+        # if date.month() < current_month:
+        #     # Do not include events from the first day of the current month
+        #     events = [event for event in events if event.startTime().date().month() != current_month]
 
         # Clear existing items in the vertical layout
         while self.vertical_layout.count():
