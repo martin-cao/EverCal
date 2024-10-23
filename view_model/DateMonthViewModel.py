@@ -37,6 +37,13 @@ class DateMonthViewModel:
     def setup_dateView(self, date: QDate):
         # Get all events on the date
         events: [Event] = self.db.get_events_for_date(date)
+        self.holidays = get_china_holidays(date.year())
+
+        # Ensure the year is within the valid range before calling get_china_holidays
+        if 1900 <= date.year() <= 2100:
+            self.holidays = get_china_holidays(date.year())
+        else:
+            self.holidays = {}
 
         if date in self.holidays:
             holiday_event = Event(

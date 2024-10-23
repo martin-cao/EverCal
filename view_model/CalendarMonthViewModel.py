@@ -82,12 +82,10 @@ class CalendarMonthViewModel:
 
                 date_view_ui.label_dateMonthView_date.setAlignment(Qt.AlignRight | Qt.AlignTop)
 
-
-
                 # Calculate the current date
                 current_date = QDate(year, month, day)
                 if row == 0 and col < offset:  # Days before the first day of the month
-                    previous_month_date = days_in_previous_month - (offset - col - 1)
+                    previous_month_date = days_in_previous_month - offset + col + 1
                     if previous_month_date == 1:
                         date_view_ui.label_dateMonthView_date.setText(previous_month.toString("MMM d"))
                     else:
@@ -110,8 +108,9 @@ class CalendarMonthViewModel:
                     day += 1
 
                 # Instantiate DateMonthViewModel and set up the date view
-                date_month_view_model = DateMonthViewModel(date_view, date_view_ui.verticalLayout_dateMonthView, self.db_connection)
-                date_month_view_model.setup_dateView(current_date)
+                if current_date.year() > 0:
+                    date_month_view_model = DateMonthViewModel(date_view, date_view_ui.verticalLayout_dateMonthView, self.db_connection)
+                    date_month_view_model.setup_dateView(current_date)
 
                 # debug
                 # print(f"Adding date_view at row {row}, col {col}")
