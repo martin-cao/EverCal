@@ -87,11 +87,9 @@ class CalendarMonthViewModel:
                 current_date = QDate(year, month, day)
                 if row == 0 and col < offset:  # Days before the first day of the month
                     previous_month_date = days_in_previous_month - offset + col + 1
-                    if previous_month_date == 1:
-                        date_view_ui.label_dateMonthView_date.setText(previous_month.toString("MMM d"))
-                    else:
-                        date_view_ui.label_dateMonthView_date.setText(str(previous_month_date))
+                    date_view_ui.label_dateMonthView_date.setText(str(previous_month_date))
                     date_view_ui.label_dateMonthView_date.setStyleSheet("color: gray;")
+                    current_date = previous_month.addDays(previous_month_date - 1)
                 elif day > days_in_month:  # Days after the last day of the month
                     next_month_date = day - days_in_month
                     if next_month_date == 1:

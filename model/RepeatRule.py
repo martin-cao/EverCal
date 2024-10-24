@@ -51,13 +51,13 @@ class RepeatRule:
     def to_json(self) -> str:
         data = self.__dict__.copy()
         if self.end_date:
-            data['end_date'] = self.end_date.toString(Qt.ISODate)
+            data['end_date'] = self.end_date.toString("yyyy-M-d")
         return json.dumps(data)
 
     @staticmethod
     def from_json(json_str: str) -> 'RepeatRule':
-        print(f"Decoding JSON: {json_str}")  # Debugging statement
+        # print(f"Decoding JSON: {json_str}")  # Debugging statement
         data = json.loads(json_str)
         if 'end_date' in data and data['end_date']:
-            data['end_date'] = QDate.fromString(data['end_date'], Qt.ISODate)
+            data['end_date'] = QDate.fromString(data['end_date'], "yyyy-M-d")
         return RepeatRule(**data)

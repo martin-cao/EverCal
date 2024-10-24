@@ -39,9 +39,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Known Issues
-- Event Display Glitch: Events on the first day of the month may be mistakenly displayed in the final days of the previous month. This is under investigation and will be fixed in future updates.
-
 ## Roadmap
 - [ ] Daily, Weekly & Yearly view
 - [ ] Add, Edit & Delete events
